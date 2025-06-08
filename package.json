@@ -4,7 +4,8 @@
   "description": "this is admin service to manage problems of the AlgoCode Platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Sangam5756/AlgoCode-Problem-Service/issues"
   },
-  "homepage": "https://github.com/Sangam5756/AlgoCode-Problem-Service#readme"
+  "homepage": "https://github.com/Sangam5756/AlgoCode-Problem-Service#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
 }
