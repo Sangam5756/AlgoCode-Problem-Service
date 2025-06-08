@@ -1,0 +1,19 @@
+{
+  "name": "algocode-problem-service",
+  "version": "1.0.0",
+  "description": "this is admin service to manage problems of the AlgoCode Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sangam5756/AlgoCode-Problem-Service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sangam5756/AlgoCode-Problem-Service/issues"
+  },
+  "homepage": "https://github.com/Sangam5756/AlgoCode-Problem-Service#readme"
+}
