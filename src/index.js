@@ -9,6 +9,8 @@
 const express = require("express");
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes");
+const BaseError = require("./errors/base.error");
+const errorHandler = require("./utils/ErrorHandler");
 
 const app = express();
 
@@ -20,8 +22,16 @@ app.get("/ping", (req, res) => {
   res.status(200).json({ message: "Problem Service is running fine!" });
 });
 
-
 app.use("/api", apiRouter);
+
+
+
+
+
+
+
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
