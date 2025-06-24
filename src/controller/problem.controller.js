@@ -1,29 +1,41 @@
 const { StatusCodes } = require("http-status-codes");
 const NotImplemented = require("../errors/NotImplemented.error");
+const { ProblemService } = require("../services");
+const { ProblemRepository } = require("../repository");
 
-function ping(req, res,next) {
+const problemService = new ProblemService(new ProblemRepository());
+
+function ping(req, res, next) {
   res
     .status(StatusCodes.OK)
     .json({ message: "PONG CONTROLLER IS WORKING FINE  " });
 }
 
-function AddProblem(req, res,next) {
+async function AddProblem(req, res, next) {
   try {
-    throw new NotImplemented("AddProblem");
+    console.log("incoming Request Body",req.body);
+    const newproblem = await problemService.createProblem(req.body);
+    res.status(StatusCodes.CREATED).json({
+      success: true,
+      message: "SuccessFully Created New Problem",
+      error: {},
+      data: newproblem,
+    });
   } catch (error) {
     next(error);
   }
 }
 
-function getProblem(req, res,next) {
+async function getProblem(req, res, next) {
   try {
-    throw new NotImplemented("getProblem");
+    const response = await ProblemService.getAllProblems();
+    res.status(StatusCodes.OK).json(response);
   } catch (error) {
     next(error);
   }
 }
 
-function getProblems(req, res,next) {
+function getProblems(req, res, next) {
   try {
     throw new NotImplemented("getProblems");
   } catch (error) {
@@ -31,7 +43,7 @@ function getProblems(req, res,next) {
   }
 }
 
-function deleteProblem(req, res,next) {
+function deleteProblem(req, res, next) {
   try {
     throw new NotImplemented("deleteProblem");
   } catch (error) {
@@ -39,7 +51,7 @@ function deleteProblem(req, res,next) {
   }
 }
 
-function updateProblem(req, res,next) {
+function updateProblem(req, res, next) {
   try {
     throw new NotImplemented("updateProblem");
   } catch (error) {

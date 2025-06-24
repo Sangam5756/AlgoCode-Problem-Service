@@ -9,8 +9,8 @@
 const express = require("express");
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes");
-const BaseError = require("./errors/base.error");
-const errorHandler = require("./utils/ErrorHandler");
+const errorHandler = require("./utils/errorHandler");
+const dbconnect = require("./config/db.config");
 
 const app = express();
 
@@ -33,6 +33,8 @@ app.use("/api", apiRouter);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
+
   console.log(`server is running on port ${PORT}`);
+  await dbconnect();
 });
