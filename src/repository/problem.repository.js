@@ -14,6 +14,40 @@ class ProblemRepository {
       throw error;
     }
   }
+
+  async  getAllProblems(){
+    try {
+      const problems = await Problem.find({});
+      console.log("inside the repository",problems);
+      return problems;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+
+  }
+
+  async getProblemById(problemId){
+    try {
+      const problem = await Problem.findById(problemId);
+      return problem;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async deleteProblem(problemId){
+    try {
+      const response = await Problem.findByIdAndDelete(problemId).countDocuments();
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
 }
+
 
 module.exports = ProblemRepository;
