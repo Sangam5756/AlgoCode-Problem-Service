@@ -40,7 +40,7 @@ async function getProblem(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+} 
 
 async function getProblems(req, res, next) {
   try {
@@ -69,7 +69,15 @@ async function deleteProblem(req, res, next) {
 
 function updateProblem(req, res, next) {
   try {
-    throw new NotImplemented("updateProblem");
+    
+    const response = problemService.updateProblem(req.params.id, req.body);
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: `SuccessFully updated Problem with id ${req.params.id}`,
+      error: {},
+      data: response,
+    });
+
   } catch (error) {
     next(error);
   }
