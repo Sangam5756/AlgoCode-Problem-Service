@@ -14,9 +14,9 @@ const problemRouter = express.Router();
  */
 problemRouter.get("/ping",problemController.ping)
 
-problemRouter.get("/:id", problemController.getProblems);
-
 problemRouter.get("/", problemController.getProblems);
+
+problemRouter.get("/:id", problemController.getProblem);
 
 problemRouter.post("/", problemController.AddProblem);
 

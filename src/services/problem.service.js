@@ -21,13 +21,22 @@ class ProblemService {
   }
 
   async getProblem(problemId) {
-    const problem = await this.problemRepository.getProblem(problemId);
+    const problem = await this.problemRepository.getProblemById(problemId);
     return problem;
   }
 
   async deleteProblem(problemId) {
     const problem = await this.problemRepository.deleteProblem(problemId);
     return problem;
+  }
+  async updateProblem(problemId, problemData) {
+    // 1. Sanitize the markdown for description
+    problemData.description = sanitizeMarkdownContent(problemData.description);
+    const updatedProblem = await this.problemRepository.updateProblem(
+      problemId,
+      problemData
+    );
+    return updatedProblem;
   }
 }
 
