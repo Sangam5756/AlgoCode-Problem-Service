@@ -1,3 +1,5 @@
+const { logger } = require("../config/logger.config");
+const NotFoundError = require("../errors/notFound.error");
 const { Problem } = require("../models");
 
 class ProblemRepository {
@@ -18,7 +20,6 @@ class ProblemRepository {
   async getAllProblems() {
     try {
       const problems = await Problem.find({});
-      console.log("inside the repository", problems);
       return problems;
     } catch (error) {
       console.log(error);
@@ -38,12 +39,15 @@ class ProblemRepository {
 
   async deleteProblem(problemId) {
     try {
-      const response = await Problem.findByIdAndDelete(
-        problemId
-      ).countDocuments();
-      return response;
+      const problem = await Problem.findByIdAndDelete(problemId);
+
+      if (!problem) {
+        logger.error(`Problem with id ${problemId} not found for deletion`);
+        throw new NotFoundError(problemId);
+      }
+      return problem;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       throw error;
     }
   }
